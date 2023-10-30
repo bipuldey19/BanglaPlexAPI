@@ -13,8 +13,9 @@ const headers = {
   Referer: "https://banglaplex.fun/",
 };
 
-router.get("/search/:query", async (req, res) => {
-  const url = "https://banglaplex.fun/search/?q=" + req.params.query;
+router.get("/search", async (req, res) => {
+  const query = req.query.q;
+  const url = "https://banglaplex.fun/search/?q=" + query;
 
   await axios.get(url, { headers: headers }).then(async (response) => {
     const $ = cheerio.load(response.data);
